@@ -21,7 +21,7 @@ def main():
         elif inp.startswith("type"):
             cmd = inp.replace("type ", "");
             for pathx in paths:
-                if os.path.isfile(f"{pathx/cmd}"):
+                if os.path.isfile(f"{pathx}/{cmd}"):
                     path_cmds.append(cmd)
             if(cmd == "echo" or cmd == "type" or cmd == "exit"):
                 sys.stdout.write(f"{cmd} is a shell builtin\n")
