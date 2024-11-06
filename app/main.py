@@ -37,8 +37,6 @@ def main():
                     if os.path.isfile(f"{path}/{command.split(' ')[0]}"):
                         os.system(command)
                         break
-                    else:
-                         #print(f"{path}/{command.split(' ')[0]}")
                 else:
                     print(f"{command}: command not found!!!")
 
