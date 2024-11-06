@@ -27,7 +27,7 @@ def main():
                         if location:
                             print(f"{cmd[0]} is {location}")
                         else:
-                            print(f"{" ".join(cmd)} not found")
+                            print(f"{" ".join(cmd)}: not found")
             case _:
                 paths = os.environ.get("PATH")
                 paths = paths.split(":")
