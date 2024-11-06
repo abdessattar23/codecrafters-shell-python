@@ -16,6 +16,8 @@ def main():
         match command.split(" "):
             case ["exit", "0"]:
                 exit(0)
+            case "pwd":
+                print(os.getcwd())
             case ["echo", *cmd]:
                 print(" ".join(cmd))
             case ["type", *cmd]:
