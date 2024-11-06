@@ -23,14 +23,11 @@ def main():
                     case ["echo" | "exit" | "type"]:
                         print(f"{cmd[0]} is a shell builtin")
                     case _:
-                        if cmd[0] == "pwd":
-                            print(os.getcwd())
+                        location = find_in_path(cmd[0])
+                        if location:
+                            print(f"{cmd[0]} is {location}")
                         else:
-                            location = find_in_path(cmd[0])
-                            if location:
-                                print(f"{cmd[0]} is {location}")
-                            else:
-                                print(f"{" ".join(cmd)}: not found")
+                            print(f"{" ".join(cmd)}: not found")
             case "pwd":
                 print(f"{os.getcwd()}")
             case _:
