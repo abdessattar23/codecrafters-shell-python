@@ -18,6 +18,7 @@ def main():
                 exit(0)
             case "pwd":
                 print(os.getcwd())
+                break
             case ["echo", *cmd]:
                 print(" ".join(cmd))
             case ["type", *cmd]:
