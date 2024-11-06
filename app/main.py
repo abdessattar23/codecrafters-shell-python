@@ -38,7 +38,7 @@ def main():
                         os.system(command)
                         break
                     else:
-                        #print(f"{path}/{command.split(' ')[0]}")
+                         #print(f"{path}/{command.split(' ')[0]}")
                 else:
                     print(f"{command}: command not found!!!")
 
