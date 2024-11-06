@@ -31,8 +31,7 @@ def main():
                         else:
                             print(f"${" ".join(cmd)} not found")
             case _:
-                print(f"{command}: command not found")
-                if os.path.isfile(command.split(" ")[0]):
+                    if os.path.isfile(command.split(" ")[0]):
                     os.system(command)
                 else:
                     print(f"{command}: command not found")
