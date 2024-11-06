@@ -37,7 +37,7 @@ def main():
             sys.stdout.flush()
             continue
         if os.path.isfile(user_input.split(" ")[0]):
-            os.system(user_input)
+            os.system(f"./{user_input}")
         else:
             print(f"{user_input}: command not found")
         # sys.stdout.write(f"{user_input}: command not found\n")
