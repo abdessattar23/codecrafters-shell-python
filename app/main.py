@@ -15,8 +15,9 @@ def main():
         elif inp.startswith("echo"):
             sys.stdout.write(inp.replace("echo ", "") + "\n")
             sys.stdout.flush()
-        sys.stdout.write(f"{inp}: command not found\n")
-        sys.stdout.flush()
+        else:
+            sys.stdout.write(f"{inp}: command not found\n")
+            sys.stdout.flush()
 
 
 if __name__ == "__main__":
