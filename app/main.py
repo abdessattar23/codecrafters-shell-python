@@ -10,6 +10,8 @@ def main():
         sys.stdout.write("$ ")
         sys.stdout.flush()
         inp = input("")
+        if inp == "exit 0":
+            return 0
         sys.stdout.write(f"{inp}: command not found\n")
         sys.stdout.flush()
 
