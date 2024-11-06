@@ -18,7 +18,6 @@ def main():
                 exit(0)
             case "pwd":
                 print(os.getcwd())
-                break
             case ["echo", *cmd]:
                 print(" ".join(cmd))
             case ["type", *cmd]:
@@ -26,11 +25,14 @@ def main():
                     case ["echo" | "exit" | "type"]:
                         print(f"{cmd[0]} is a shell builtin")
                     case _:
-                        location = find_in_path(cmd[0])
-                        if location:
-                            print(f"{cmd[0]} is {location}")
+                        if cmd[0] == "pwd":
+                            print(os.getcwd())
                         else:
-                            print(f"{" ".join(cmd)}: not found")
+                            location = find_in_path(cmd[0])
+                            if location:
+                                print(f"{cmd[0]} is {location}")
+                            else:
+                                print(f"{" ".join(cmd)}: not found")
             case _:
                 paths = os.environ.get("PATH")
                 paths = paths.split(":")
