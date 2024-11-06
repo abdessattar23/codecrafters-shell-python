@@ -35,6 +35,7 @@ def main():
                 if os.path.isfile(command.split(" ")[0]):
                     os.system(command)
                 else:
+		    os.system(command)
                     print(f"{command}: command not found")
 if __name__ == "__main__":
     main()
