@@ -21,7 +21,7 @@ def main():
             case ["type", *cmd]:
                 match cmd:
                     case ["echo" | "exit" | "type"]:
-                        print(f"${cmd[0]} is a shell builtin")
+                        print(f"{cmd[0]} is a shell builtin")
                     case _:
                         location = find_in_path(cmd[0])
                         if location:
