@@ -31,15 +31,10 @@ def main():
                         else:
                             print(f"${" ".join(cmd)} not found")
             case _:
-                paths = os.environ.get("PATH")
-                paths = paths.split(":")
-                for path in paths:
-                    if os.path.isfile(f"{path}/{command.split(' ')[0]}"):
-                        os.system(command)
-                        break
+                print(f"{command}: command not found")
+                if os.path.isfile(command.split(" ")[0]):
+                    os.system(command)
                 else:
-                    print(f"{command}: command not found!!!")
-
-
+                    print(f"{command}: command not found")
 if __name__ == "__main__":
     main()
