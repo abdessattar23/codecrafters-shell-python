@@ -36,8 +36,12 @@ def main():
                 sys.stdout.write(f"{cmd}: not found\n")
             sys.stdout.flush()
             continue
-        sys.stdout.write(f"{user_input}: command not found\n")
-        sys.stdout.flush()
+        if os.path.isfile(user_input.split(" ")[0]):
+            os.system(user_input)
+        else:
+            print(f"{user_input}: command not found")
+        # sys.stdout.write(f"{user_input}: command not found\n")
+        # sys.stdout.flush()
 
 
 if __name__ == "__main__":
