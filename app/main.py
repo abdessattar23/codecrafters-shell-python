@@ -5,33 +5,39 @@ import os
 def main():
     # Uncomment this block to pass the first stage
     
-    path = os.environ.get("PATH")
-    paths = path.split(":")
-    path_cmds = []
-    # Wait for user input
-    while(True):
+    builtin_cmds = ["echo", "exit", "type"]
+    PATH = os.environ.get("PATH")
+    while True:
         sys.stdout.write("$ ")
         sys.stdout.flush()
-        inp = input("")
-        if inp == "exit 0":
-            return 0
-        elif inp.startswith("echo"):
-            sys.stdout.write(inp.replace("echo ", "") + "\n")
+        user_input = input()
+        if user_input == "exit 0":
+            break
+        if user_input.startswith("echo"):
+            content = user_input.split(" ", 1)
+            if len(content) > 1:
+                sys.stdout.write(content[1] + "\n")
+            else:
+                sys.stdout.write("\n")
             sys.stdout.flush()
-        elif inp.startswith("type"):
-            cmd = inp.replace("type ", "");
-            for pathx in paths:
-                if os.path.isfile(f"{pathx}/{cmd}"):
-                    path_cmds.append(cmd)
-            if(cmd == "echo" or cmd == "type" or cmd == "exit"):
+            continue
+        if user_input.startswith("type"):
+            cmd = user_input.split(" ")[1]
+            cmd_path = None
+            paths = PATH.split(":")
+            for path in paths:
+                if os.path.isfile(f"{path}/{cmd}"):
+                    cmd_path = f"{path}/{cmd}"
+            if cmd in builtin_cmds:
                 sys.stdout.write(f"{cmd} is a shell builtin\n")
-                sys.stdout.flush()
-            elif cmd in path_cmds:
-                sys.stdout.write(f"{cmd} is {path}/{cmd}\n")
-                sys.stdout.flush()
-        else:
-            sys.stdout.write(f"{inp}: command not found\n")
+            elif cmd_path:
+                sys.stdout.write(f"{cmd} is {cmd_path}\n")
+            else:
+                sys.stdout.write(f"{cmd} not found\n")
             sys.stdout.flush()
+            continue
+        sys.stdout.write(f"{user_input}: command not found\n")
+        sys.stdout.flush()
 
 
 if __name__ == "__main__":
