@@ -12,6 +12,9 @@ def main():
         inp = input("")
         if inp == "exit 0":
             return 0
+        elif inp.startswith("echo"):
+            sys.stdout.write(inp.replace("echo ", "") + "\n")
+            sys.stdout.flush()
         sys.stdout.write(f"{inp}: command not found\n")
         sys.stdout.flush()
 
