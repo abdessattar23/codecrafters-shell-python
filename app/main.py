@@ -41,7 +41,7 @@ def main():
                             break
                         else:
                             print(f"{command}: command not found")
-                            break
+                            
 
 
 if __name__ == "__main__":
