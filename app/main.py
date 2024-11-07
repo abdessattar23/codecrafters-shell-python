@@ -38,7 +38,7 @@ def main():
                     for path in paths:
                         if os.path.isfile(f"{path}/{command.split(' ')[0]}"):
                             os.system(command)
-                            return
+                            continue
                             
                     print(f"{command}: command not found")
 
