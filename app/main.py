@@ -1,5 +1,6 @@
 import sys
 import os
+
 def find_in_path(param):
     path = os.environ['PATH']
     for directory in path.split(":"):
@@ -7,6 +8,7 @@ def find_in_path(param):
             if param in filenames:
                 return f"{dirpath}/{param}"
     return None
+
 def main():
     while True:
         sys.stdout.write("$ ")
@@ -20,15 +22,14 @@ def main():
                 print(" ".join(cmd))
             case ["type", *cmd]:
                 match cmd:
-                    case ["pwd" |"echo" | "exit" | "type"]:
+                    case ["pwd" | "echo" | "exit" | "type"]:
                         print(f"{cmd[0]} is a shell builtin")
                     case _:
                         location = find_in_path(cmd[0])
                         if location:
                             print(f"{cmd[0]} is {location}")
                         else:
-                            print(f"{" ".join(cmd)}: not found")
-
+                            print(f"{' '.join(cmd)}: not found")
             case _:
                 if command == "pwd":
                     print(f"{os.getcwd()}")
@@ -39,10 +40,8 @@ def main():
                         if os.path.isfile(f"{path}/{command.split(' ')[0]}"):
                             os.system(command)
                             continue
-                            
-                    print(f"{command}: command not found")
-
-
+                    else:
+                        print(f"{command}: command not found")
 
 if __name__ == "__main__":
     main()
