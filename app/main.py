@@ -28,7 +28,7 @@ def main():
                             print(f"{cmd[0]} is {location}")
                         else:
                             print(f"{" ".join(cmd)}: not found")
-            
+
             case _:
                 if command == "pwd":
                     print(f"{os.getcwd()}")
@@ -36,12 +36,12 @@ def main():
                     paths = os.environ.get("PATH")
                     paths = paths.split(":")
                     for path in paths:
-                        if os.path.isfile(f"{path}/{command.split(' ')[0]}"):
+                        if os.path.isfile(f"{path}\\{command.split(' ')[0]}"):
                             os.system(command)
                             break
-                        else:
-                            print(f"{command}: command not found")
-                            
+                    else:
+                        print(f"{command}: command not found")
+
 
 
 if __name__ == "__main__":
