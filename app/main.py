@@ -20,7 +20,7 @@ def main():
                 print(" ".join(cmd))
             case ["type", *cmd]:
                 match cmd:
-                    case ["echo" | "exit" | "type" | "pwd"]:
+                    case ["pwd" |"echo" | "exit" | "type"]:
                         print(f"{cmd[0]} is a shell builtin")
                     case _:
                         location = find_in_path(cmd[0])
@@ -28,17 +28,20 @@ def main():
                             print(f"{cmd[0]} is {location}")
                         else:
                             print(f"{" ".join(cmd)}: not found")
-            case "pwd":
-                print(f"{os.getcwd()}")
+            
             case _:
-                paths = os.environ.get("PATH")
-                paths = paths.split(":")
-                for path in paths:
-                    if os.path.isfile(f"{path}/{command.split(' ')[0]}"):
-                        os.system(command)
-                        break
+                if command == "pwd":
+                    print(f"{os.getcwd()}")
                 else:
-                    print(f"{command}: command not found")
+                    paths = os.environ.get("PATH")
+                    paths = paths.split(":")
+                    for path in paths:
+                        if os.path.isfile(f"{path}/{command.split(' ')[0]}"):
+                            os.system(command)
+                            break
+                        else:
+                            print(f"{command}: command not found")
+                            break
 
 
 if __name__ == "__main__":
